@@ -72,5 +72,46 @@ def download_csv_from_mysql(cursor, unique_states, fields):
         df.to_csv(os.path.join('csv', f'{state}.csv'))
 
 
-df = pd.read_csv("./sepomex/CPdescarga.txt", sep="|", encoding='utf8')
+df = pd.read_csv("./sepomex/CPdescarga.csv", sep="|", encoding='utf8')
 subset = df[df["d_estado"] == "Aguascalientes"]
+
+cols = ['d_codigo', 'd_asenta']
+subset[cols]
+
+
+import operator
+from difflib import SequenceMatcher
+
+
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
+
+
+df = pd.read_csv("csv/Tamaulipas.csv", )
+cols = ['id', 'colony']
+values = df[cols].values
+idx = list(map(operator.itemgetter(0), values))
+colonies = list(map(operator.itemgetter(1), values))
+
+
+similar("angel", "angel")
+similar("angel", "a n g e l")
+similar("angel", "Angel")
+similar("angel", "angelito")
+similar("angel", "arcangel")
+similar("angel", "angelopolis")
+similar("angel", "carburador")
+
+pivot = colonies[0]
+for x in colonies[1:100]:
+    similar(pivot, x)
+
+n = 100
+threshold = 0.6
+for i in range(n):
+    pivot = colonies[i]
+    for j in range(i + 1, n):
+        s = colonies[j]
+        score = similar(pivot, s) 
+        if score > threshold:
+            print(score, idx[i], pivot, idx[j], s)
