@@ -1,0 +1,10 @@
+jupyter
+pyspark
+matplotlib
+openpyxl
+scipy
+dagster-mysql
+dagster-postgres
+pymysql
+dagster
+dagit

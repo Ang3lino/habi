@@ -1,0 +1,10 @@
+resources:
+  excel:
+    config:
+      excel_name: "Matriz_de_adyacencia_data_team.xlsx"
+  mysql:
+    config: 
+       username: 'root'
+       password: 'root'
+       hostname: 'localhost'
+       db_name: 'actors'
